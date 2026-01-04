@@ -1,29 +1,46 @@
 # 🧠 Personal Offline AI Assistant
 
 A **local, offline, privacy-first AI assistant** built using **Ollama + Mistral + Python**.
-The assistant can read personal documents (PDFs, notes), answer questions using them (RAG),
-maintain long-term memory, and help with daily study planning — all without internet access.
+
+This assistant can:
+- read your personal documents (PDFs, notes),
+- answer questions using them via **RAG (Retrieval-Augmented Generation)**,
+- maintain **long-term memory with user consent**, and
+- help with **daily study planning**,
+
+—all **without using the internet or cloud APIs**.
 
 ---
 
-## ✨ Features
+## ✨ Key Features
 
-- 🔒 **Fully Offline & Private** (no cloud APIs)
-- 📚 **Document-Aware (RAG)** – answers from your PDFs & notes
-- 🧠 **Persistent Memory** (with user consent)
-- 📅 **Daily Planner Mode**
-- 🖥️ **Desktop UI (Tkinter)**
-- ⚡ **Optimized for CPU-only systems**
+- 🔒 **Fully Offline & Private**  
+  No cloud APIs, no data leaves your machine.
+
+- 📚 **Document-Aware Q&A (RAG)**  
+  Ask questions directly from your PDFs and notes.
+
+- 🧠 **Persistent Memory (Opt-in)**  
+  The assistant remembers goals only after your confirmation.
+
+- 📅 **Daily Planner Mode**  
+  Generates realistic study plans based on your focus areas.
+
+- 🖥️ **Desktop UI (Tkinter)**  
+  Lightweight, responsive desktop interface.
+
+- ⚡ **CPU-Friendly**  
+  Designed to run on low-resource systems (no GPU required).
 
 ---
 
 ## 🏗️ Architecture Overview
 
 - **Ollama + Mistral** → Local LLM inference  
-- **Python** → Orchestration & logic  
-- **Keyword-based Retrieval (RAG)** → Lightweight & fast  
+- **Python** → Core orchestration & logic  
+- **Keyword-based RAG** → Lightweight retrieval (CPU-friendly)  
 - **Tkinter** → Desktop UI  
-- **JSON Memory** → Safe, explicit long-term memory  
+- **JSON Memory** → Explicit, user-controlled persistence  
 
 ---
 
@@ -32,66 +49,96 @@ maintain long-term memory, and help with daily study planning — all without in
 personal_ai_assistant/
 ├── assistant.py # Core logic (RAG, memory, planner)
 ├── ui.py # Desktop UI
-├── memory.json # Persistent memory store
+├── memory.json # Persistent memory (ignored by Git)
 ├── ai_docs/ # User documents (PDF/TXT)
 ├── requirements.txt
 └── README.md
 
 
+> ⚠️ `memory.json` and `ai_docs/` are intentionally ignored in Git for privacy.
+
 ---
 
-## 🚀 How to Run
+## 🚀 Step-by-Step: How to Run the Project
 
-### 1️⃣ Install dependencies
+### ✅ Prerequisites
+
+Make sure you have:
+- **Python 3.10+**
+- **Git**
+- **Ollama installed**
+
+👉 Install Ollama from: https://ollama.com
+
+---
+
+### 1️⃣ Clone the Repository
+
 ```bash
+git clone https://github.com/YOUR_USERNAME/personal-ai-assistant.git
+cd personal-ai-assistant
+
+2️⃣ Install Python Dependencies
 pip install -r requirements.txt
 
-#start ollama and pull model
+3️⃣ Pull the LLM Model (One-Time Setup)
 ollama pull mistral
 
-#run the assistant UI
+4️⃣ Add Your Documents
+Place your files inside the ai_docs/ folder:
+
+.txt
+
+.md
+
+.pdf
+Example
+ai_docs/
+├── computer_networks_notes.pdf
+├── os_summary.txt
+
+5️⃣ Run the Desktop UI
 python ui.py
 
-
-
-🧪 Example Commands
+🧪 Example Commands to Try
 
 plan my day
 
 Explain OSI model
 
+What is TCP/IP from my notes?
+
 Remember that I am studying Computer Networks
 
-
+What am I currently focusing on?
 
 🧠 Learning Outcomes
 
-Built a full RAG pipeline from scratch
+By building this project, I learned how to:
 
-Designed safe memory management
+Design and implement a full RAG pipeline from scratch
 
-Optimized LLM usage for low-resource systems
+Build safe, explicit memory systems for AI assistants
 
-Implemented threaded UI for responsiveness
+Optimize LLM workflows for CPU-only environments
 
-Learned practical LLM system design
+Create a responsive threaded UI in Python
 
-
+Think in terms of LLM system design, not just prompts
 
 📌 Future Improvements
 
-Semantic embeddings for retrieval
+Semantic embeddings for smarter retrieval
 
-PDF OCR support
+OCR support for scanned PDFs
 
 Web or mobile UI
 
-Model switching (Mistral / LLaMA)
-
+Model switching (Mistral, LLaMA, etc.)
 
 👤 Author
 
 Abhay
 Computer Engineering Student
-Interested in AI Systems, Data Engineering, and LLMs
+Interested in AI Systems, Data Engineering, and LLM Architectures
 
