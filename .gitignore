@@ -1,0 +1,4 @@
+memory.json
+ai_docs/
+__pycache__/
+*.pyc
