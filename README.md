@@ -10,6 +10,12 @@ This assistant can:
 
 —all **without using the internet or cloud APIs**.
 
+## 💡 Why This Project?
+
+I built this project to deeply understand how AI assistants work under the hood — 
+from document retrieval and memory handling to UI responsiveness — 
+without relying on cloud APIs or heavy frameworks.
+
 ---
 
 ## ✨ Key Features
