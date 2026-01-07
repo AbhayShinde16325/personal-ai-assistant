@@ -1,151 +1,135 @@
-[# 🧠 Personal Offline AI Assistant
 
-A **local, offline, privacy-first AI assistant** built using **Ollama + Mistral + Python**.
 
-This assistant can:
-- read your personal documents (PDFs, notes),
-- answer questions using them via **RAG (Retrieval-Augmented Generation)**,
-- maintain **long-term memory with user consent**, and
-- help with **daily study planning**,
+# 🧠 PrivateMind: Personal Offline AI Assistant
 
-—all **without using the internet or cloud APIs**.
+A **local, privacy-first AI ecosystem** built to turn your personal notes into an interactive knowledge base. No cloud, no subscription, no data leaks.
 
-## 💡 Why This Project?
+Built with **Ollama + Mistral + Python**, PrivateMind is designed for students and researchers who need a powerful research assistant that runs entirely on their own hardware.
 
-I built this project to deeply understand how AI assistants work under the hood — 
-from document retrieval and memory handling to UI responsiveness — 
-without relying on cloud APIs or heavy frameworks.
+---
+
+## 💡 Why PrivateMind?
+
+Most AI assistants act as a "black box" that sends your data to third-party servers. I built this project to deconstruct the **LLM Orchestration layer** and understand:
+
+* How **Retrieval-Augmented Generation (RAG)** works without expensive vector databases.
+* How to manage **asynchronous UI threading** in Python.
+* How to implement **explicit memory systems** that respect user consent.
 
 ---
 
 ## ✨ Key Features
 
-- 🔒 **Fully Offline & Private**  
-  No cloud APIs, no data leaves your machine.
-
-- 📚 **Document-Aware Q&A (RAG)**  
-  Ask questions directly from your PDFs and notes.
-
-- 🧠 **Persistent Memory (Opt-in)**  
-  The assistant remembers goals only after your confirmation.
-
-- 📅 **Daily Planner Mode**  
-  Generates realistic study plans based on your focus areas.
-
-- 🖥️ **Desktop UI (Tkinter)**  
-  Lightweight, responsive desktop interface.
-
-- ⚡ **CPU-Friendly**  
-  Designed to run on low-resource systems (no GPU required).
+| Feature | Description |
+| --- | --- |
+| 🔒 **Total Privacy** | 100% Offline. Zero telemetry. Zero API calls. |
+| 📚 **Contextual RAG** | Indexes your `PDF`, `TXT`, and `MD` files for instant Q&A. |
+| 🧠 **Opt-in Memory** | Persistent `JSON` memory that only saves what you explicitly approve. |
+| 📅  **Study Planner** | Algorithmic breakdown of focus areas into realistic daily tasks. |
+| ⚡ **CPU Optimized** | Lightweight keyword-based retrieval designed for laptops without dedicated GPUs. |
+| 🖥️ **Native UI** | Clean, responsive Desktop interface built with Tkinter. |
 
 ---
 
 ## 🏗️ Architecture Overview
 
-- **Ollama + Mistral** → Local LLM inference  
-- **Python** → Core orchestration & logic  
-- **Keyword-based RAG** → Lightweight retrieval (CPU-friendly)  
-- **Tkinter** → Desktop UI  
-- **JSON Memory** → Explicit, user-controlled persistence  
+The system follows a modular design to separate the "brain" (LLM) from the "eyes" (RAG) and the "hands" (UI).
+
+```mermaid
+graph LR
+    A[User UI] --> B{Orchestrator}
+    B --> C[Keyword RAG]
+    B --> D[JSON Memory]
+    C --> E[Local Docs Folder]
+    B --> F[Ollama / Mistral]
+
+```
+
+* **Inference Engine:** [Ollama](https://ollama.com/) running Mistral-7B.
+* **Retrieval Logic:** Custom keyword-matching algorithm to ensure low latency on standard CPUs.
+* **State Management:** Threaded Python logic to prevent UI freezing during LLM generation.
 
 ---
 
-## 📂 Project Structure
-
-personal_ai_assistant/
-├── assistant.py # Core logic (RAG, memory, planner)
-├── ui.py # Desktop UI
-├── memory.json # Persistent memory (ignored by Git)
-├── ai_docs/ # User documents (PDF/TXT)
-├── requirements.txt
-└── README.md
-
-
-> ⚠️ `memory.json` and `ai_docs/` are intentionally ignored in Git for privacy.
-
----
-
-## 🚀 Step-by-Step: How to Run the Project
+## 🚀 Getting Started
 
 ### ✅ Prerequisites
 
-Make sure you have:
-- **Python 3.10+**
-- **Git**
-- **Ollama installed**
+* **Python 3.10+**
+* **Ollama Desktop** ([Download here](https://ollama.com/download))
 
-👉 Install Ollama from: https://ollama.com
-
----
-
-### 1️⃣ Clone the Repository
+### 1️⃣ Installation
 
 ```bash
+# Clone the repository
 git clone https://github.com/YOUR_USERNAME/personal-ai-assistant.git
 cd personal-ai-assistant
 
-2️⃣ Install Python Dependencies
+# Install dependencies
 pip install -r requirements.txt
 
-3️⃣ Pull the LLM Model (One-Time Setup)
+```
+
+### 2️⃣ Model Setup
+
+Ensure Ollama is running in your tray, then pull the model:
+
+```bash
 ollama pull mistral
 
-4️⃣ Add Your Documents
-Place your files inside the ai_docs/ folder:
+```
 
-.txt
+### 3️⃣ Load Your Knowledge
 
-.md
+Move your study materials into the `ai_docs/` folder.
 
-.pdf
-Example
-ai_docs/
-├── computer_networks_notes.pdf
-├── os_summary.txt
+```bash
+cp ~/Downloads/os_notes.pdf ./ai_docs/
 
-5️⃣ Run the Desktop UI
+```
+
+### 4️⃣ Launch
+
+```bash
 python ui.py
 
-🧪 Example Commands to Try
+```
 
-plan my day
+---
 
-Explain OSI model
+## 🧪 Interactive Examples
 
-What is TCP/IP from my notes?
+| Goal | What to Type |
+| --- | --- |
+| **Query Docs** | "Based on my notes, what are the layers of the OSI model?" |
+| **Set Memory** | "Remember that my final exam is on December 12th." |
+| **Retrieve Memory** | "What do you know about my upcoming schedule?" |
+| **Plan Study** | "Create a 3-day study plan for Computer Networks." |
 
-Remember that I am studying Computer Networks
+---
 
-What am I currently focusing on?
+## 🧠 Learning Outcomes
 
-🧠 Learning Outcomes
+This project served as a deep dive into **LLM System Design**:
 
-By building this project, I learned how to:
+* **RAG Pipeline:** Implemented document parsing and text chunking from scratch.
+* **Memory Persistence:** Developed a logic gate to distinguish between "chat history" (volatile) and "knowledge memory" (persistent).
+* **Concurrency:** Used Python's `threading` and `queue` modules to manage real-time text streaming in a GUI.
 
-Design and implement a full RAG pipeline from scratch
+---
 
-Build safe, explicit memory systems for AI assistants
+## 📌 Roadmap & Future Enhancements
 
-Optimize LLM workflows for CPU-only environments
+* [ ] **Semantic Search:** Implementing `Sentence-Transformers` for better context matching.
+* [ ] **OCR Engine:** Adding `Tesseract` support to read scanned images/notes.
+* [ ] **Model Hot-Swapping:** A dropdown to switch between Llama3, Phi-3, and Mistral.
+* [ ] **Dark Mode:** Modernizing the Tkinter interface with custom themes.
 
-Create a responsive threaded UI in Python
+---
 
-Think in terms of LLM system design, not just prompts
+## 👤 Author
 
-📌 Future Improvements
+**Abhay**
 
-Semantic embeddings for smarter retrieval
-
-OCR support for scanned PDFs
-
-Web or mobile UI
-
-Model switching (Mistral, LLaMA, etc.)
-
-👤 Author
-
-Abhay
-Computer Engineering Student
-Interested in AI Systems, Data Engineering, and LLM Architectures
-
-](https://github.com/AbhayShinde16325/personal-ai-assistant)
+* *Computer Engineering Student*
+* **Interests:** AI Systems, Data Engineering, LLM Architectures
