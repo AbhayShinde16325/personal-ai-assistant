@@ -1,4 +1,4 @@
-# 🧠 Personal Offline AI Assistant
+[# 🧠 Personal Offline AI Assistant
 
 A **local, offline, privacy-first AI assistant** built using **Ollama + Mistral + Python**.
 
@@ -148,3 +148,4 @@ Abhay
 Computer Engineering Student
 Interested in AI Systems, Data Engineering, and LLM Architectures
 
+](https://github.com/AbhayShinde16325/personal-ai-assistant)
